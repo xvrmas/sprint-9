@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <div class="box border mt-6">
+    <div class="box is-info mt-6">
       <img src="@/assets/Studio_Ghibli_logo.svg.png">
+      <p>unofficial site of studio ghibli where you will find information about their movies</p>
     </div>
     <button class="button" @click="showPanell">Enter</button>
   </div>
