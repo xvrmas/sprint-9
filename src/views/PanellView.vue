@@ -2,7 +2,7 @@
     <div>
         <template>
             <div class="hero is-dark">スタジオジブリのファンサイト</div>
-            <b-navbar class="border is-info">
+            <b-navbar class="border barra">
                 <template #brand>
                     <b-navbar-item tag="router-link" class="image" :to="{ path: '/' }">
                         <img class="is-rounded" src="@/assets/imgbin.png" alt="Logo of studio ghibli">
@@ -12,8 +12,8 @@
                     <b-navbar-item href="#">
                         Home
                     </b-navbar-item>
-                    <b-navbar-item @click="document()">
-                        Documentation
+                    <b-navbar-item @click="getFilms()">
+                        Films
                     </b-navbar-item>
                 </template>
                 <template #end>
@@ -31,18 +31,15 @@
             </b-navbar>
             <div class="hero is-dark">スタジオジブリ</div>
         </template>
-        <div class="hero is-black">
-            <div></div>
-        </div>
-        <div>
-            <img class="image" src="@/assets/Nois-png.png" >
-        </div>
+        <showFilms></showFilms>
     </div>
 
 </template>
 <script>
+import showFilms from '@/components/showFilms.vue'
 export default {
     name: 'PanellView',
+    components: { showFilms },
     methods: {
         showLoginPage() {
             this.$router.push('LoginPage')
@@ -51,9 +48,14 @@ export default {
             this.$router.push('RegisterPage')
 
         },
-        document() {
-            alert('funciona')
+        getFilms() {
+            return this.$store.dispatch('GET_FILMS');
         }
     }
 }
 </script>
+<style scoped>
+.barra {
+    background-color: rgb(16, 156, 235);
+}
+</style>
