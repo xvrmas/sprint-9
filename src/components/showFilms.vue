@@ -4,7 +4,7 @@
             <div class="card m-3">
                 <a>
                     <div class="card-image">
-                        <figure class="image" style="height:auto;  width:50vh">
+                        <figure class="image" style="height:auto;  width:45vh">
                             <img :src="item.image" alt="">
                         </figure>
                     </div>

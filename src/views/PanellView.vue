@@ -1,19 +1,19 @@
 <template>
     <div>
         <template>
-            <div class="hero is-dark">スタジオジブリのファンサイト</div>
-            <b-navbar class="border barra">
+            <div class="hero  is-dark">スタジオジブリのファンサイト</div>
+            <b-navbar class="border  barra">
                 <template #brand>
                     <b-navbar-item tag="router-link" class="image" :to="{ path: '/' }">
                         <img class="is-rounded" src="@/assets/imgbin.png" alt="Logo of studio ghibli">
                     </b-navbar-item>
                 </template>
                 <template #start>
-                    <b-navbar-item href="#">
-                        Home
-                    </b-navbar-item>
                     <b-navbar-item @click="getFilms()">
                         Films
+                    </b-navbar-item>
+                    <b-navbar-item href="#">
+                        Store
                     </b-navbar-item>
                 </template>
                 <template #end>
@@ -31,7 +31,10 @@
             </b-navbar>
             <div class="hero is-dark">スタジオジブリ</div>
         </template>
-        <showFilms></showFilms>
+        <div>
+            <showFilms />
+            <img src="@/assets/Nois-png.png" alt="">
+        </div>
     </div>
 
 </template>
@@ -57,5 +60,6 @@ export default {
 <style scoped>
 .barra {
     background-color: rgb(16, 156, 235);
+
 }
 </style>

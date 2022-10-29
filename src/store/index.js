@@ -22,7 +22,6 @@ export default new Vuex.Store({
     async GET_FILMS({commit}){
       const response = await fetch('https://ghibliapi.herokuapp.com/films/');
       const films = await response.json();
-      console.log(films)
       commit('setFilms',films)
     }
   },
