@@ -11,9 +11,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/PanellView',
-    name: 'PanellView',
-    component: () => import('../views/PanellView.vue')
+    path: '/showFilms',
+    name: 'ShowFilms',
+    component: () => import('../views/showFilms.vue')
   },
   {
     path: '/LoginPage',
@@ -24,6 +24,16 @@ const routes = [
     path: '/RegisterPage',
     name: 'RegisterPage',
     component: () => import('../views/RegisterPage.vue')
+  },
+  {
+    path: '/showInfoFilm',
+    name: 'showInfoFilm',
+    component: () => import('../views/showInfoFilm.vue')
+  },
+  {
+    path:'/storeView',
+    name:'storeView',
+    component: ()=> import('../views/storeView.vue')
   }
 ]
 

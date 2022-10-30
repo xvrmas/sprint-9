@@ -1,9 +1,12 @@
 <template>
     <div class="mt-6">
-        <button class="button" @click="showHome">Home</button>
         <div>
             <section class="columns">
-                <div class="column border is-rounded mt-5 is-half is-offset-one-quarter">
+                <div class="column">
+                    <img src="@/assets/mononoke-sentada.png" style="height:max-content;">
+
+                </div>
+                <div class="column border is-rounded m-5">
                     <div class="box">
                         <p class="title">
                             Create user:
@@ -25,20 +28,12 @@ export default {
     name: 'RegistePage',
     methods:
     {
-        showHome() {
-            this.$router.push('PanellView')
-        }
+
     }
 }
 </script>
 <style>
-/* .box {
-    border: solid orange 2px;
-    border-radius: 30px;
-    box-shadow: 15px 15px 15px rgb(125, 142, 91) ;
+.reg {
+    margin-top: 10vh;
 }
-
-.button {
-    border: solid orange 1px;
-} */
 </style>

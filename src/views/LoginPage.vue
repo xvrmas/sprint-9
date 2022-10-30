@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <button class="button mt-6" @click="showHome">Home</button>
+    <div class="mt-6">
         <section class="columns shadow">
-            <div class="column  mt-5 is-half is-offset-one-quarter">
+            <div class="column p-4 is-quarter m-5">
                 <div class="box">
                     <p class="title">
                         Login:
@@ -13,6 +12,9 @@
                         <button class="button mt-4" type="submit">Enter</button>
                     </form>
                 </div>
+            </div>
+            <div class="column reg">
+                <img src="@/assets/totoro-amics.png" style="height:max-content; align-self: center;">
             </div>
         </section>
     </div>
@@ -28,6 +30,9 @@ export default {
     }
 }
 </script>
-<style >
-
+<style>
+/* .reg {
+    margin-top: 20vh;
+    margin-left: 5vh;
+} */
 </style>

@@ -12,13 +12,13 @@
                     <b-navbar-item @click="getFilms()">
                         Films
                     </b-navbar-item>
-                    <b-navbar-item href="#">
+                    <b-navbar-item @click="showStore">
                         Store
                     </b-navbar-item>
                 </template>
                 <template #end>
                     <b-navbar-item tag="div">
-                        <div class="buttons">
+                        <div class="buttons is-centered">
                             <a class="button is-warning" @click="showLoginPage">
                                 <strong> Log in</strong>
                             </a>
@@ -31,18 +31,13 @@
             </b-navbar>
             <div class="hero is-dark">スタジオジブリ</div>
         </template>
-        <div>
-            <showFilms />
-            <img src="@/assets/Nois-png.png" alt="">
-        </div>
+      
     </div>
 
 </template>
 <script>
-import showFilms from '@/components/showFilms.vue'
 export default {
     name: 'PanellView',
-    components: { showFilms },
     methods: {
         showLoginPage() {
             this.$router.push('LoginPage')
@@ -52,7 +47,11 @@ export default {
 
         },
         getFilms() {
+            this.$router.push('showFilms')
             return this.$store.dispatch('GET_FILMS');
+        },
+        showStore(){
+            this.$router.push('storeView')
         }
     }
 }

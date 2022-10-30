@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cardFilms: [],
+    infoFilm: []
   },
   getters: {
     getCardFilms(state) {
@@ -19,10 +20,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async GET_FILMS({commit}){
+    async GET_FILMS({ commit }) {
       const response = await fetch('https://ghibliapi.herokuapp.com/films/');
       const films = await response.json();
-      commit('setFilms',films)
+      commit('setFilms', films)
     }
   },
   modules: {

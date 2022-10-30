@@ -2,10 +2,10 @@
     <div class="columns is-multiline is-centered is-mobile m-3">
         <div v-for="(item, i) in getCardFilms" :key="i">
             <div class="card m-3">
-                <a>
+                <a class="nav-link" @click="showInfo(item)" >
                     <div class="card-image">
                         <figure class="image" style="height:auto;  width:45vh">
-                            <img :src="item.image" alt="">
+                            <img :src="item.image" alt="image film" >
                         </figure>
                     </div>
                     <div class="card-content">
@@ -23,11 +23,18 @@ export default {
     computed: {
         ...mapGetters(['getCardFilms']),
     },
-    data() {
-        return {
-
-        }
+ methods:{
+    showInfo(item){
+        this.$store.state.infoFilm =(item),
+        this.$router.push('showInfoFilm')
     }
+ }
 }
 
 </script>
+<style scoped>
+.card:hover {
+    transform: translateY(-8px);
+
+}
+</style>

@@ -4,7 +4,6 @@
       <img src="@/assets/Studio_Ghibli_logo.svg.png">
       <p>unofficial site of studio ghibli where you will find information about their movies</p>
     </div>
-    <button class="button mb-6" @click="showPanell">Enter</button>
   </div>
 </template>
 
@@ -12,11 +11,11 @@
 
 export default {
   name: 'HomeView',
-  methods: {
-    showPanell() {
-      this.$router.push('PanellView')
-    }
-  }
+  // methods: {
+  //   showPanell() {
+  //     this.$router.push('PanellView')
+  //   }
+  // }
 }
 </script>
 <style scoped>
