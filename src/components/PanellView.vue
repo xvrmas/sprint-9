@@ -26,18 +26,29 @@
                                 Register
                             </a>
                         </div>
+                        <div>
+                            <a class="button" @click="logOut">Sign out</a>
+                        </div>
+                        <div>
+                            <a class="button" @click="userInfo">user info</a>
+                        </div>
                     </b-navbar-item>
                 </template>
             </b-navbar>
             <div class="hero is-dark">スタジオジブリ</div>
         </template>
-      
+
     </div>
 
 </template>
 <script>
+import { mapState } from 'vuex'
+import { getAuth, signOut } from "firebase/auth"
 export default {
     name: 'PanellView',
+    computed: {
+        ...mapState(['condition'])
+    },
     methods: {
         showLoginPage() {
             this.$router.push('LoginPage')
@@ -50,8 +61,23 @@ export default {
             this.$router.push('showFilms')
             return this.$store.dispatch('GET_FILMS');
         },
-        showStore(){
+        showStore() {
             this.$router.push('storeView')
+        },
+        userInfo() {
+            const auth = getAuth();
+            let usuario = auth.currentUser;
+            console.log(usuario)
+
+        },
+        logOut() {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                alert('Sign out')
+            }).catch((error) => {
+                // An error happened.
+            });
         }
     }
 }

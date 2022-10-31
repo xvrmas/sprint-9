@@ -7,16 +7,30 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cardFilms: [],
-    infoFilm: []
+    infoFilm: [],
+    condition: true
   },
   getters: {
     getCardFilms(state) {
       return state.cardFilms
+    },
+    getUser(state) {
+      return state.user
+    },
+    getPassword(state) {
+      return state.cardFilms
+    },
+
+    getCondition(state) {
+      return state.condition
     }
   },
   mutations: {
     setFilms(state, setFilmsAction) {
       state.cardFilms = setFilmsAction
+    },
+    setCondition(state, setConditionAction) {
+      state.condition = setConditionAction
     }
   },
   actions: {
@@ -24,6 +38,10 @@ export default new Vuex.Store({
       const response = await fetch('https://ghibliapi.herokuapp.com/films/');
       const films = await response.json();
       commit('setFilms', films)
+    },
+    SET_CONDITION({ commit }) {
+      const conditions = false;
+      commit('setCondition', conditions)
     }
   },
   modules: {

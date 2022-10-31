@@ -11,9 +11,11 @@
                         <p class="title">
                             Create user:
                         </p>
-                        <form>
-                            <input class="input is-rounded m-2" type="email" placeholder="Enter your email">
-                            <input class="input is-rounded m-2" type="Password" placeholder="Enter your password">
+                        <form  @submit.prevent="register">
+                            <input v-model="usuario" class="input is-rounded m-2" type="email"
+                                placeholder="Enter your email">
+                            <input v-model="contrasena" class="input is-rounded m-2" type="Password"
+                                placeholder="Enter your password">
                             <button class="button mt-4" type="submit">create</button>
                         </form>
                     </div>
@@ -24,11 +26,32 @@
 </template>
 
 <script>
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 export default {
     name: 'RegistePage',
-    methods:
-    {
-
+    data() {
+        return {
+            usuario: '',
+            contrasena: ''
+        }
+    },
+    methods: {
+        register() {
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, this.usuario, this.contrasena)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log(user)
+                    alert('usuari creat')
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                });
+        }
     }
 }
 </script>
