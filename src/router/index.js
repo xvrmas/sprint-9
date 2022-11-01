@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,9 +32,9 @@ const routes = [
     component: () => import('../views/showInfoFilm.vue')
   },
   {
-    path:'/storeView',
-    name:'storeView',
-    component: ()=> import('../views/storeView.vue')
+    path: '/storeView',
+    name: 'storeView',
+    component: () => import('../views/storeView.vue')
   }
 ]
 
@@ -42,5 +43,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+const originalPush = VueRouter.prototype.push
 
+VueRouter.prototype.push = function push(location) {
+
+  return originalPush.call(this, location).catch(err => err)
+
+}
 export default router

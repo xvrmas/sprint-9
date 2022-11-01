@@ -29,9 +29,6 @@ export default new Vuex.Store({
     setFilms(state, setFilmsAction) {
       state.cardFilms = setFilmsAction
     },
-    setCondition(state, setConditionAction) {
-      state.condition = setConditionAction
-    }
   },
   actions: {
     async GET_FILMS({ commit }) {

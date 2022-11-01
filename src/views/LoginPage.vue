@@ -22,7 +22,8 @@
     </div>
 </template>
 <script>
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { mapState } from 'vuex'
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 export default {
     name: 'Login',
     data() {
@@ -31,6 +32,9 @@ export default {
             contrasena: ''
 
         }
+    },
+    computed: {
+        ...mapState(['condition'])
     },
     methods: {
         showHome() {
@@ -43,40 +47,16 @@ export default {
                     // Signed in
                     const user = userCredential.user;
                     // ...
+                    this.$store.state.condition = false
+                    this.$router.push('showFilms')
                     alert('Log in')
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                 });
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // User is signed in, see docs for a list of available properties
-                    // https://firebase.google.com/docs/reference/js/firebase.User
-                    const uid = user.uid;
-                    // ...
-                } else {
-                    // User is signed out
-                    // ...
-                }
-            });
         },
-        info() {
-            const auth = getAuth();
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // User is signed in, see docs for a list of available properties
-                    // https://firebase.google.com/docs/reference/js/firebase.User
-                    const uid = user.uid;
-                    console.log(uid)
-                    // ...
-                } else {
-                    console.log('User is signed out')
-                    // User is signed out
-                    // ...
-                }
-            });
-        }
+       
     }
 
 }

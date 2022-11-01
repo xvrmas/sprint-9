@@ -8,14 +8,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 
 export default {
   name: 'HomeView',
-  // methods: {
-  //   showPanell() {
-  //     this.$router.push('PanellView')
-  //   }
-  // }
+  computed: {
+    ...mapState(['condition'])
+  },
+
 }
 </script>
 <style scoped>

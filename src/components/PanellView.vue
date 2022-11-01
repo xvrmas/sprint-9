@@ -18,7 +18,7 @@
                 </template>
                 <template #end>
                     <b-navbar-item tag="div">
-                        <div class="buttons is-centered">
+                        <div class="buttons is-centered" v-if="condition">
                             <a class="button is-warning" @click="showLoginPage">
                                 <strong> Log in</strong>
                             </a>
@@ -26,11 +26,8 @@
                                 Register
                             </a>
                         </div>
-                        <div>
+                        <div v-if="!condition">
                             <a class="button" @click="logOut">Sign out</a>
-                        </div>
-                        <div>
-                            <a class="button" @click="userInfo">user info</a>
                         </div>
                     </b-navbar-item>
                 </template>
@@ -43,9 +40,10 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { getAuth, signOut } from "firebase/auth"
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth"
 export default {
     name: 'PanellView',
+
     computed: {
         ...mapState(['condition'])
     },
@@ -64,23 +62,20 @@ export default {
         showStore() {
             this.$router.push('storeView')
         },
-        userInfo() {
-            const auth = getAuth();
-            let usuario = auth.currentUser;
-            console.log(usuario)
-
-        },
         logOut() {
             const auth = getAuth();
             signOut(auth).then(() => {
                 // Sign-out successful.
+                this.$store.state.condition = true
                 alert('Sign out')
             }).catch((error) => {
                 // An error happened.
+                console.error(error)
             });
-        }
+        },
     }
 }
+
 </script>
 <style scoped>
 .barra {
