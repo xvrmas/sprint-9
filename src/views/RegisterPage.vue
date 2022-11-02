@@ -12,9 +12,9 @@
                             Create user:
                         </p>
                         <form @submit.prevent="register">
-                            <input v-model="usuario" class="input is-rounded m-2" type="email"
+                            <input v-model="usuario" class="input is-rounded m-2" required type="email"
                                 placeholder="Enter your email">
-                            <input v-model="contrasena" class="input is-rounded m-2" type="Password"
+                            <input v-model="contrasena" class="input is-rounded m-2" required type="Password"
                                 placeholder="Enter your password">
                             <button class="button mt-4" type="submit">create</button>
                         </form>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-// import { beforeCreate } from "vue";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { mapState } from "vuex";
 export default {
@@ -50,7 +49,7 @@ export default {
                     const user = userCredential.user;
                     this.$store.state.condition = false
                     this.$router.push('showFilms')
-                    alert('usuari creat')
+                    alert('User created successfully')
                     // ...
                 })
                 .catch((error) => {

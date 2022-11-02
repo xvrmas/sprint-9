@@ -27,7 +27,7 @@
                             </a>
                         </div>
                         <div v-if="!condition">
-                            <a class="button" @click="logOut">Sign out</a>
+                            <a class="button" style="background-color:rgb(3, 187, 46); color:white;" @click="logOut">Sign out</a>
                         </div>
                     </b-navbar-item>
                 </template>
@@ -67,7 +67,7 @@ export default {
             signOut(auth).then(() => {
                 // Sign-out successful.
                 this.$store.state.condition = true
-                alert('Sign out')
+                alert('Sign out successfully')
             }).catch((error) => {
                 // An error happened.
                 console.error(error)

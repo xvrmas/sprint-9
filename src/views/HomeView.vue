@@ -15,7 +15,6 @@ export default {
   computed: {
     ...mapState(['condition'])
   },
-
 }
 </script>
 <style scoped>

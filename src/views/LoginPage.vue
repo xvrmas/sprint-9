@@ -7,11 +7,11 @@
                         Login:
                     </p>
                     <form @submit.prevent="login">
-                        <input v-model="usuario" class="input is-rounded m-2" type="email"
+                        <input v-model="usuario" required class="input is-rounded m-2" type="email"
                             placeholder="Enter your email">
                         <input v-model="contrasena" class="input is-rounded m-2" type="Password"
                             placeholder="Enter your password">
-                        <button class="button mt-4" type="submit">Enter</button>
+                        <button class="button mt-4" required type="submit">Enter</button>
                     </form>
                 </div>
             </div>
@@ -23,7 +23,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export default {
     name: 'Login',
     data() {
@@ -49,7 +49,7 @@ export default {
                     // ...
                     this.$store.state.condition = false
                     this.$router.push('showFilms')
-                    alert('Log in')
+                    alert('successfully logged in')
                 })
                 .catch((error) => {
                     const errorCode = error.code;

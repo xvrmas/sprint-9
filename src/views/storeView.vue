@@ -1,10 +1,12 @@
 <template>
-    <div>
-        <h1>Store</h1>
+    <div class="columns">
+        <showStoreProducts />
     </div>
 </template>
 <script>
-export default {
-    name: 'storeView'
+import showStoreProducts from '@/components/showStoreProducts.vue';
+export default {   
+    name: 'storeView',
+    components:{showStoreProducts}
 }
 </script>
