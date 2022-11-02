@@ -29,7 +29,8 @@ export default {
         return {
             cartPrice: [],
             cartProduct: [],
-            resultat: 0
+            cartFinal:[],
+            resultat: 0,
         }
     },
     computed: {
@@ -38,12 +39,8 @@ export default {
     methods: {
         showProduct(item, itemText) {
             this.cartPrice.push(item)
-            this.cartProduct.push(itemText)
-            for (let item of this.cartPrice) {
-                this.resultat = item + this.resultat ;
-                console.log('item',item)
-                console.log('resultat',this.resultat)
-            }
+            this.cartProduct.push(item, itemText)
+            this.resultat = this.cartPrice.reduce((acu, item) => acu + item)
         }
     }
 }
