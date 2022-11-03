@@ -41,6 +41,7 @@ export default {
             this.cartPrice.push(item)
             this.cartProduct.push(item, itemText)
             this.resultat = this.cartPrice.reduce((acu, item) => acu + item)
+            
         }
     }
 }

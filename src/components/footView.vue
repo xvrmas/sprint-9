@@ -56,6 +56,7 @@ img {
 .copy {
     color: black;
     padding: 0;
+    margin-top: 8vh;
 }
 
 .alinear {
