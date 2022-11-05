@@ -11,45 +11,46 @@ export default new Vuex.Store({
     condition: true,
     posts: [
       {
-        id: '1',
-        text: "Bowl castle calcifer",
+        id:'1',
+        text: "Mug castle calcifer",
         img: require("@/assets/store/howls-moving-castle-calcifer.jpg"),
-        price: 35
+        price: 15,
+        amount: 1
       },
       {
-        id: '2',
-        text: "Bowl ponyo on the waves",
+        id:'2',
+        text: "Mug ponyo on the waves",
         img: require("@/assets/store/ponyo-on-the-waves-mug.jpg"),
-        price: 35
-
+        price: 18,
+        amount: 1
       },
       {
-        id: '3',
+        id:'3',
         text: "T-shirt totoro and friends",
         img: require("@/assets/store/studio-ghibli-merchs-t-shirt.jpg"),
-        price: 85
-
+        price: 29,
+        amount: 1
       },
       {
-        id: '4',
+        id:'4',
         text: "T-Shirt universe ghibli",
         img: require("@/assets/store/Studio-Ghibli-Universe-All-Characters-T-Shirt-1-800x800.jpg"),
-        price: 74
-
+        price: 29,
+        amount: 1
       },
       {
-        id: '5',
+        id:'5',
         text: "piggy bank spirited away",
         img: require("@/assets/store/main46.jpg"),
-        price: 79
-
+        price: 42,
+        amount: 1
       },
       {
-        id: '6',
+        id:'6',
         text: "paperweight totoro bus stop",
         img: require("@/assets/store/my-neighbor-totoro-umbrella-set-pvc-figures.jpg"),
-        price: 95
-
+        price: 33,
+        amount: 1
       },
     ],
   },

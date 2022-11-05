@@ -12,13 +12,14 @@
                         <div class="card-content">
                             <p class="is-size-6"> <strong> {{ item.text }}</strong></p>
                             <p class="is-size-6">Price:{{ item.price }} $</p>
-                            <button class="button" @click="showProduct(item.price, item.text)">Add</button>
+                            <button class="button"
+                                @click="showProduct(item.price, item.text, item.amount, item.id)">Add</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <pre>{{ $data.cartFinal }}</pre>
         </div>
-        <pre>{{ $data }}</pre>
     </div>
 </template>
 <script>
@@ -27,22 +28,53 @@ export default {
     name: 'showStoreProducts',
     data() {
         return {
-            cartPrice: [],
-            cartProduct: [],
-            cartFinal:[],
+            cart: [],
+            cartFinal: [],
+            result: [],
             resultat: 0,
+            price: 0,
+            product: '',
+            amount: 1,
+            total: 0,
+            id: 0,
+            found: false
+
         }
     },
     computed: {
         ...mapGetters(['getPosts'])
     },
     methods: {
-        showProduct(item, itemText) {
-            this.cartPrice.push(item)
-            this.cartProduct.push(item, itemText)
-            this.resultat = this.cartPrice.reduce((acu, item) => acu + item)
-            
+        showProduct(itemPrice, itemText, itemAmount, itemId) {
+            var cartProto = {
+                price: itemPrice,
+                product: itemText,
+                amount: itemAmount,
+                id: itemId,
+                total: itemPrice,
+                totalPay: 0
+            }
+            this.cart.push(cartProto)
+            let result = this.cart.filter(element => element.id == itemId)
+            if (result.length > 1) {
+                this.found = true
+            } else {
+                this.found = false
+            }
+            if (this.found == true) {
+                this.cartFinal.forEach((element) => {
+                    if (element.id === itemId) {
+                        element.amount++
+                        element.total = element.price * element.amount
+                    }
+                })
+
+            } else {
+                this.cartFinal.push(cartProto)
+            }
         }
+
     }
 }
+
 </script>

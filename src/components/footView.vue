@@ -12,7 +12,7 @@
                 </div>
                 <div class="column is-half adres">
                     <div class="text">
-                        <p><strong>Name:</strong> Studio Ghibli fan club</p>
+                        <p><strong>Studio Ghibli fan club</strong></p>
                         <p><strong>Phone:</strong>+81570055777</p>
                         <p><strong>Address:</strong> 1 Chome-1-83 Shimorenjaku</p>
                         <p><strong>City:</strong> Mitaka, Tokyo 181-0013</p>
