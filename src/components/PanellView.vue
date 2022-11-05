@@ -17,6 +17,28 @@
                     </b-navbar-item>
                 </template>
                 <template #end>
+                    <!-------modal------->
+                    <b-modal v-model="open">
+                        <b-menu>
+                            <div class="card">
+                                <div class="card-content">
+                                    <div v-for="(item, i) in cartFinal" :key="i">
+                                        <b-table class="columns my-1">
+                                            <h5 class="column"><strong>{{ item.product }}</strong></h5>
+                                            <h5 class="column">{{ item.price }}</h5>
+                                            <button class="button" @click="resta(item)">-</button>
+                                            <h5 class="column">{{ item.amount }}</h5>
+                                            <button class="button" @click="suma(item)">+</button>
+                                            <h5 class="column">{{ item.total }}</h5>
+                                            <button class="button" @click="clear(item)" >Supr</button>
+                                        </b-table>
+                                    </div>
+                                </div>
+                            </div>
+                        </b-menu>
+                    </b-modal>
+                    <b-button class="button" @click="open = true">Cart: {{1}}</b-button>
+                    <!---------------modal------------------->
                     <b-navbar-item tag="div">
                         <div class="buttons is-centered" v-if="condition">
                             <a class="button is-warning" @click="showLoginPage">
@@ -27,7 +49,8 @@
                             </a>
                         </div>
                         <div v-if="!condition">
-                            <a class="button" style="background-color:rgb(3, 187, 46); color:white;" @click="logOut">Sign out</a>
+                            <a class="button" style="background-color:rgb(3, 187, 46); color:white;"
+                                @click="logOut">Sign out</a>
                         </div>
                     </b-navbar-item>
                 </template>
@@ -40,12 +63,16 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth"
+import { getAuth, signOut } from "firebase/auth"
 export default {
     name: 'PanellView',
-
+    data() {
+        return {
+            open: false,
+        }
+    },
     computed: {
-        ...mapState(['condition'])
+        ...mapState(['condition', 'cartFinal'])
     },
     methods: {
         showLoginPage() {
@@ -73,6 +100,21 @@ export default {
                 console.error(error)
             });
         },
+        resta(item) {        
+            item.amount--
+            if (item.amount <= 1) {
+                item.amount = 1
+            }
+            item.total = item.price * item.amount
+
+        },
+        suma(item) {
+            item.amount++
+            item.total = item.price * item.amount
+        },
+        clear(item){
+            console.log(item)
+        }
     }
 }
 

@@ -18,18 +18,17 @@
                     </div>
                 </div>
             </div>
-            <pre>{{ $data.cartFinal }}</pre>
         </div>
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 export default {
     name: 'showStoreProducts',
     data() {
         return {
             cart: [],
-            cartFinal: [],
             result: [],
             resultat: 0,
             price: 0,
@@ -37,12 +36,14 @@ export default {
             amount: 1,
             total: 0,
             id: 0,
+            totalPay: 0,
             found: false
 
         }
     },
     computed: {
-        ...mapGetters(['getPosts'])
+        ...mapGetters(['getPosts']),
+        ...mapState(['cartFinal'])
     },
     methods: {
         showProduct(itemPrice, itemText, itemAmount, itemId) {
@@ -52,7 +53,6 @@ export default {
                 amount: itemAmount,
                 id: itemId,
                 total: itemPrice,
-                totalPay: 0
             }
             this.cart.push(cartProto)
             let result = this.cart.filter(element => element.id == itemId)
@@ -62,7 +62,7 @@ export default {
                 this.found = false
             }
             if (this.found == true) {
-                this.cartFinal.forEach((element) => {
+                this.$store.state.cartFinal.forEach((element) => {
                     if (element.id === itemId) {
                         element.amount++
                         element.total = element.price * element.amount
@@ -70,9 +70,12 @@ export default {
                 })
 
             } else {
-                this.cartFinal.push(cartProto)
+                this.$store.state.cartFinal.push(cartProto)
             }
-        }
+            let suma = this.$store.state.cartFinal.map(element => element.total)
+            this.totalPay = suma.reduce((accu, item) => (accu + item))
+        },
+
 
     }
 }

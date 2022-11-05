@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     cardFilms: [],
     infoFilm: [],
+    cartFinal: [],
     condition: true,
     posts: [
       {
