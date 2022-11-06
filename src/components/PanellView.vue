@@ -30,14 +30,14 @@
                                             <h5 class="column">{{ item.amount }}</h5>
                                             <button class="button" @click="suma(item)">+</button>
                                             <h5 class="column">{{ item.total }}</h5>
-                                            <button class="button" @click="clear(item)" >Supr</button>
+                                            <button class="button" @click="clear(item)">Supr</button>
                                         </b-table>
                                     </div>
                                 </div>
                             </div>
                         </b-menu>
                     </b-modal>
-                    <b-button class="button" @click="open = true">Cart: {{1}}</b-button>
+                    <b-button class="button" @click="open = true">Cart: {{ 1 }}</b-button>
                     <!---------------modal------------------->
                     <b-navbar-item tag="div">
                         <div class="buttons is-centered" v-if="condition">
@@ -100,7 +100,7 @@ export default {
                 console.error(error)
             });
         },
-        resta(item) {        
+        resta(item) {
             item.amount--
             if (item.amount <= 1) {
                 item.amount = 1
@@ -112,7 +112,7 @@ export default {
             item.amount++
             item.total = item.price * item.amount
         },
-        clear(item){
+        clear(item) {
             console.log(item)
         }
     }
