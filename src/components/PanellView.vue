@@ -37,7 +37,7 @@
                             </div>
                         </b-menu>
                     </b-modal>
-                    <b-button class="button" @click="open = true">Cart: {{ 1 }}</b-button>
+                    <b-button class="button" @click="open = true">Cart: {{  }}</b-button>
                     <!---------------modal------------------->
                     <b-navbar-item tag="div">
                         <div class="buttons is-centered" v-if="condition">
