@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import { getAuth } from "firebase/auth"
 
 Vue.use(VueRouter)
 
@@ -35,6 +35,14 @@ const routes = [
     path: '/storeView',
     name: 'storeView',
     component: () => import('../views/storeView.vue')
+  },
+  {
+    path: '/showCart',
+    name: 'showCart',
+    component: () => import('../views/showCart.vue'),
+    meta: {
+      autenticacion: true
+    }
   }
 ]
 
@@ -50,4 +58,16 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 
 }
+router.beforeEach((to, from, next) => {
+  const auth = getAuth();
+  let usuario = auth.currentUser;
+  let autorizacion = to.matched.some(record => record.meta.autenticacion);
+  if (autorizacion && !usuario) {
+    next('LoginPage')
+  } else if (!autorizacion && usuario) {
+    next()
+  } else { next(); }
+
+});
+
 export default router

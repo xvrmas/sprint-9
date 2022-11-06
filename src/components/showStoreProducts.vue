@@ -36,7 +36,6 @@ export default {
             amount: 1,
             total: 0,
             id: 0,
-            totalPay: 0,
             found: false
 
         }
@@ -73,7 +72,10 @@ export default {
                 this.$store.state.cartFinal.push(cartProto)
             }
             let suma = this.$store.state.cartFinal.map(element => element.total)
-            this.totalPay = suma.reduce((accu, item) => (accu + item))
+            this.$store.state.totalPay = suma.reduce((accu, item) => (accu + item))
+
+            let sumaAmount = this.$store.state.cartFinal.map(element => element.amount)
+            this.$store.state.totalAmount = sumaAmount.reduce((accu, item) => (accu + item))
         },
 
 
