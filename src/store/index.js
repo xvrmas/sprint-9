@@ -8,48 +8,48 @@ export default new Vuex.Store({
   state: {
     cardFilms: [],
     infoFilm: [],
-    cartFinal: [],
+    // cartFinal: [],
     totalPay: 0,
-    totalAmount:0,
+    totalAmount: 0,
     condition: true,
     posts: [
       {
-        id:'1',
+        id: '1',
         text: "Mug castle calcifer",
         img: require("@/assets/store/howls-moving-castle-calcifer.jpg"),
         price: 15,
         amount: 1
       },
       {
-        id:'2',
+        id: '2',
         text: "Mug ponyo on the waves",
         img: require("@/assets/store/ponyo-on-the-waves-mug.jpg"),
         price: 18,
         amount: 1
       },
       {
-        id:'3',
+        id: '3',
         text: "T-shirt totoro and friends",
         img: require("@/assets/store/studio-ghibli-merchs-t-shirt.jpg"),
         price: 29,
         amount: 1
       },
       {
-        id:'4',
+        id: '4',
         text: "T-Shirt universe ghibli",
         img: require("@/assets/store/Studio-Ghibli-Universe-All-Characters-T-Shirt-1-800x800.jpg"),
         price: 29,
         amount: 1
       },
       {
-        id:'5',
+        id: '5',
         text: "piggy bank spirited away",
         img: require("@/assets/store/main46.jpg"),
         price: 42,
         amount: 1
       },
       {
-        id:'6',
+        id: '6',
         text: "paperweight totoro bus stop",
         img: require("@/assets/store/my-neighbor-totoro-umbrella-set-pvc-figures.jpg"),
         price: 33,
@@ -74,12 +74,15 @@ export default new Vuex.Store({
     getPosts(state) {
       return state.posts
     },
-    getTotalPay(state){
+    getTotalPay(state) {
       return state.totalPay
     },
-    getTotalAmount(state){
-      return state.getTotalAmount
-    }
+    getTotalAmount(state) {
+      return state.totalAmount
+    },
+    // getStore(state) {
+    //   return state.cartFinal
+    // }
   },
   mutations: {
     setFilms(state, setFilmsAction) {

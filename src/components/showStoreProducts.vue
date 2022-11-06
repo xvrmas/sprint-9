@@ -19,6 +19,8 @@
                 </div>
             </div>
         </div>
+        <pre>{{$data.cartFinal}}</pre>
+
     </div>
 </template>
 <script>
@@ -30,6 +32,7 @@ export default {
         return {
             cart: [],
             result: [],
+            cartFinal:[],
             resultat: 0,
             price: 0,
             product: '',
@@ -42,8 +45,7 @@ export default {
     },
     computed: {
         ...mapGetters(['getPosts']),
-        ...mapState(['cartFinal'])
-    },
+        },
     methods: {
         showProduct(itemPrice, itemText, itemAmount, itemId) {
             var cartProto = {
@@ -61,7 +63,7 @@ export default {
                 this.found = false
             }
             if (this.found == true) {
-                this.$store.state.cartFinal.forEach((element) => {
+                this.cartFinal.forEach((element) => {
                     if (element.id === itemId) {
                         element.amount++
                         element.total = element.price * element.amount
@@ -69,12 +71,13 @@ export default {
                 })
 
             } else {
-                this.$store.state.cartFinal.push(cartProto)
+               this.cartFinal.push(cartProto)
+               localStorage.setItem('carrito', JSON.stringify(this.cartFinal))
             }
-            let suma = this.$store.state.cartFinal.map(element => element.total)
+            let suma = this.cartFinal.map(element => element.total)
             this.$store.state.totalPay = suma.reduce((accu, item) => (accu + item))
 
-            let sumaAmount = this.$store.state.cartFinal.map(element => element.amount)
+            let sumaAmount = this.cartFinal.map(element => element.amount)
             this.$store.state.totalAmount = sumaAmount.reduce((accu, item) => (accu + item))
         },
 

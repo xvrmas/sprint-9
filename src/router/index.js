@@ -36,14 +36,7 @@ const routes = [
     name: 'storeView',
     component: () => import('../views/storeView.vue')
   },
-  {
-    path: '/showCart',
-    name: 'showCart',
-    component: () => import('../views/showCart.vue'),
-    meta: {
-      autenticacion: true
-    }
-  }
+  
 ]
 
 const router = new VueRouter({

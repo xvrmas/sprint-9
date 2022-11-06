@@ -16,8 +16,8 @@
                         Store
                     </b-navbar-item>
                 </template>
-                <template #end>            
-                    <b-button class="button mt-2" @click="open()">Cart: {{totalAmount }}</b-button>
+                <template #end>
+                    <b-button class="button mt-2" >Cart: {{ totalAmount }}</b-button>
                     <b-navbar-item tag="div">
                         <div class="buttons is-centered" v-if="condition">
                             <a class="button is-warning" @click="showLoginPage">
@@ -45,9 +45,9 @@ import { mapState } from 'vuex'
 import { getAuth, signOut } from "firebase/auth"
 export default {
     name: 'PanellView',
-  
+
     computed: {
-        ...mapState(['condition', 'cartFinal','totalAmount'])
+        ...mapState(['condition', 'totalAmount'])
     },
     methods: {
         showLoginPage() {
@@ -75,11 +75,7 @@ export default {
                 console.error(error)
             });
         },
-        open(){
-            this.$router.push('showCart')
-
-        }
-        
+      
     }
 }
 
