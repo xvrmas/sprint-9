@@ -74,6 +74,9 @@ export default {
             }
             let suma = this.$store.state.cartFinal.map(element => element.total)
             this.totalPay = suma.reduce((accu, item) => (accu + item))
+
+            let sumaAmount = this.cartFinal.map(element => element.amount)
+            this.$store.state.totalAmount = sumaAmount.reduce((accu, item) => (accu + item))
         },
 
 

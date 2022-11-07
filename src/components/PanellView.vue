@@ -37,7 +37,7 @@
                             </div>
                         </b-menu>
                     </b-modal>
-                    <b-button class="button" @click="open = true">Cart: {{  }}</b-button>
+                    <b-button class="button" @click="open = true">Cart: {{ totalAmount }}</b-button>
                     <!---------------modal------------------->
                     <b-navbar-item tag="div">
                         <div class="buttons is-centered" v-if="condition">
@@ -72,7 +72,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['condition', 'cartFinal'])
+        ...mapState(['condition', 'cartFinal','totalAmount'])
     },
     methods: {
         showLoginPage() {

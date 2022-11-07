@@ -10,6 +10,7 @@ export default new Vuex.Store({
     infoFilm: [],
     cartFinal: [],
     condition: true,
+    totalAmount: 0,
     posts: [
       {
         id:'1',
@@ -71,7 +72,10 @@ export default new Vuex.Store({
     },
     getPosts(state) {
       return state.posts
-    }
+    },
+    getTotalAmount(state) {
+      return state.totalAmount
+    },
   },
   mutations: {
     setFilms(state, setFilmsAction) {
