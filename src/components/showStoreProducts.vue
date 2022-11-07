@@ -1,5 +1,30 @@
 <template>
-    <div>
+    <div class="columns">
+        <div class="column  mt-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><abbr title="Product"></abbr>Product</th>
+                        <th><abbr title="Price"></abbr>Price</th>
+                        <th><abbr title="Price"></abbr></th>
+                        <th><abbr title="Amount"></abbr>Amount</th>
+                        <th><abbr title="Price"></abbr></th>
+
+                        <th><abbr title="total"></abbr>Total</th>
+                    </tr>
+                </thead>
+                <tbody v-for="(item, i) in cartFinal" :key="i">
+                    <td>{{ item.product }}<strong></strong></td>
+                    <td>{{ item.price }}$</td>
+                    <button class="button is-danger" @click="resta(item)">-</button>
+                    <td>{{ item.amount }}</td>
+                    <button class="button is-danger" @click="suma(item)">+</button>
+                    <td>{{ item.total }}$</td>
+                </tbody>
+            </table>
+            <h1><strong>Total:</strong> {{ resultat }}$</h1>
+        </div>
+
         <div class="columns is-multiline is-centered is-mobile m-3">
             <div v-for="(item, i) in getPosts" :key="i">
                 <div class="card m-3">
@@ -23,27 +48,26 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { mapState } from 'vuex';
 export default {
     name: 'showStoreProducts',
     data() {
         return {
             cart: [],
             result: [],
+            cartFinal: [],
+            totalAmount: 0,
             resultat: 0,
             price: 0,
             product: '',
             amount: 1,
             total: 0,
             id: 0,
-            totalPay: 0,
             found: false
 
         }
     },
     computed: {
         ...mapGetters(['getPosts']),
-        ...mapState(['cartFinal'])
     },
     methods: {
         showProduct(itemPrice, itemText, itemAmount, itemId) {
@@ -62,7 +86,7 @@ export default {
                 this.found = false
             }
             if (this.found == true) {
-                this.$store.state.cartFinal.forEach((element) => {
+                this.cartFinal.forEach((element) => {
                     if (element.id === itemId) {
                         element.amount++
                         element.total = element.price * element.amount
@@ -70,14 +94,50 @@ export default {
                 })
 
             } else {
-                this.$store.state.cartFinal.push(cartProto)
+                this.cartFinal.push(cartProto)
+                localStorage.setItem('cart', JSON.stringify(this.cartFinal));
             }
-            let suma = this.$store.state.cartFinal.map(element => element.total)
-            this.totalPay = suma.reduce((accu, item) => (accu + item))
+
+            this.calculTotal()
+
+        },
+        resta(item) {
+            item.amount--
+            if (item.amount <= 1) {
+                let arr = this.cartFinal.indexOf(item)
+                //    delete(this.cartFinal[arr])
+                // const resultado = this.cartFinal.filter(element => element != arr);
+                   this.cartFinal.splice(arr,1)
+                // this.cartFinal = resultado
+                this.showProduct
+            }
+            item.total = item.price * item.amount
+            this.calculTotal()
+        },
+        suma(item) {
+            item.amount++
+            item.total = item.price * item.amount
+            this.calculTotal()
+
+        },
+        calculTotal() {
+            let suma = this.cartFinal.map(element => element.total);
+            this.resultat = suma.reduce((accu, item) => (accu + item), 0)
         },
 
+        mounted() {
+            if (localStorage.cart) this.cart = localStorage.cart;
+        },
 
+    },
+    watch: {
+        name(newName) {
+            localStorage.cart = newName;
+        }
     }
 }
 
 </script>
+<style scoped>
+
+</style>

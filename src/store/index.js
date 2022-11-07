@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     cardFilms: [],
     infoFilm: [],
-    cartFinal: [],
     condition: true,
     posts: [
       {
@@ -48,7 +47,7 @@ export default new Vuex.Store({
       },
       {
         id:'6',
-        text: "paperweight totoro bus stop",
+        text: "paper weight totoro",
         img: require("@/assets/store/my-neighbor-totoro-umbrella-set-pvc-figures.jpg"),
         price: 33,
         amount: 1
