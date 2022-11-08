@@ -125,7 +125,8 @@ export default {
         deleteItem(item){
             let arr = this.cartFinal.indexOf(item)
             this.cartFinal.splice(arr, 1)
-            this.cart.splice(arr, 1)
+            this.cart =[]
+            console.log(this.cart)
             this.cartFinal = [...this.cartFinal];
 
         },
