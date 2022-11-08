@@ -78,6 +78,7 @@ export default {
                 id: itemId,
                 total: itemPrice,
             }
+            
             this.cart.push(cartProto)
             let result = this.cart.filter(element => element.id == itemId)
             if (result.length > 1) {
@@ -103,15 +104,12 @@ export default {
         },
         resta(item) {
             item.amount--
-            if (item.amount <= 1) {
-                let arr = this.cartFinal.indexOf(item)
-                //    delete(this.cartFinal[arr])
-                // const resultado = this.cartFinal.filter(element => element != arr);
-                   this.cartFinal.splice(arr,1)
-                // this.cartFinal = resultado
-                this.showProduct
+            if (item.amount == 0) {
+
+                this.deleteItem(item)
             }
             item.total = item.price * item.amount
+
             this.calculTotal()
         },
         suma(item) {
@@ -123,6 +121,13 @@ export default {
         calculTotal() {
             let suma = this.cartFinal.map(element => element.total);
             this.resultat = suma.reduce((accu, item) => (accu + item), 0)
+        },
+        deleteItem(item){
+            let arr = this.cartFinal.indexOf(item)
+            this.cartFinal.splice(arr, 1)
+            this.cart.splice(arr, 1)
+            this.cartFinal = [...this.cartFinal];
+
         },
 
         mounted() {
