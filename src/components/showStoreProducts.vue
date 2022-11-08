@@ -23,6 +23,9 @@
                 </tbody>
             </table>
             <h1><strong>Total:</strong> {{ resultat }}$</h1>
+            <div>
+                <button class="button" @click="showCheckOut()">Chekout</button>
+            </div>
         </div>
 
         <div class="columns is-multiline is-centered is-mobile m-3">
@@ -126,7 +129,6 @@ export default {
             let arr = this.cartFinal.indexOf(item)
             this.cartFinal.splice(arr, 1)
             this.cart =[]
-            console.log(this.cart)
             this.cartFinal = [...this.cartFinal];
 
         },
@@ -134,6 +136,9 @@ export default {
         mounted() {
             if (localStorage.cart) this.cart = localStorage.cart;
         },
+        showCheckOut(){
+            this.$router.push('CheckOut')
+        }
 
     },
     watch: {
