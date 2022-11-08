@@ -1,10 +1,10 @@
 <template>
     <div class="columns">
-        <div class="column  mt-5">
+        <div class="column ml-4 mt-5">
             <table class="table">
                 <thead>
                     <tr>
-                        <th><abbr title="Product"></abbr>Product</th>
+                        <th><abbr title="Product"></abbr  >Product</th>
                         <th><abbr title="Price"></abbr>Price</th>
                         <th><abbr title="Price"></abbr></th>
                         <th><abbr title="Amount"></abbr>Amount</th>
@@ -14,21 +14,21 @@
                     </tr>
                 </thead>
                 <tbody v-for="(item, i) in cartFinal" :key="i">
-                    <td>{{ item.product }}<strong></strong></td>
+                    <td class="is-italic">{{ item.product }}<strong></strong></td>
                     <td>{{ item.price }}$</td>
-                    <button class="button is-danger" @click="resta(item)">-</button>
+                    <button class="button is-success is-small mt-2" @click="resta(item)">-</button>
                     <td>{{ item.amount }}</td>
-                    <button class="button is-danger" @click="suma(item)">+</button>
+                    <button class="button is-success is-small mt-2" @click="suma(item)">+</button>
                     <td>{{ item.total }}$</td>
                 </tbody>
             </table>
-            <h1><strong>Total:</strong> {{ resultat }}$</h1>
+            <h1 class="is-size-4"><strong>Total:</strong> {{ resultat }}$</h1>
             <div>
-                <button class="button" @click="showCheckOut()">Chekout</button>
+                <button class="button mt-6" @click="showCheckOut()">Chekout</button>
             </div>
         </div>
 
-        <div class="columns is-multiline is-centered is-mobile m-3">
+        <div class="columns is-multiline is-centered is-mobile mt-5">
             <div v-for="(item, i) in getPosts" :key="i">
                 <div class="card m-3">
                     <div>
@@ -131,6 +131,7 @@ export default {
         deleteItem(item) {
             let arr = this.cartFinal.indexOf(item)
             this.cartFinal.splice(arr, 1)
+            alert(`${item.product}, removed from cart`)
             this.cart = []
             this.cart= this.cartFinal
             this.cart = [...this.cart]

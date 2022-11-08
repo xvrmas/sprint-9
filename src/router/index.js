@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import { getAuth } from "firebase/auth"
 
 Vue.use(VueRouter)
 
@@ -39,21 +39,35 @@ const routes = [
   {
     path: '/CheckOut',
     name: 'CheckOut',
-    component: () => import('../views/CheckOut.vue')
+    component: () => import('../views/CheckOut.vue'),
+    meta: {
+      autenticacion: true
+    }
 
   }
 ]
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
-const originalPush = VueRouter.prototype.push
+router.beforeEach((to, from, next) => {
+  const auth = getAuth();
+  let usuario = auth.currentUser;
+  console.log(usuario)
+  let autorizacion = to.matched.some(record => record.meta.autenticacion);
+  console.log(autorizacion)
+  if (autorizacion && !usuario) {
+    next('/LoginPage')
+  } else if (!autorizacion && usuario) {
+    next()
+  } else { next(); }
 
-VueRouter.prototype.push = function push(location) {
+});
 
-  return originalPush.call(this, location).catch(err => err)
-
-}
 export default router
