@@ -1,13 +1,12 @@
 <template>
-    <div>{{ checkout }}</div>
+    <div>
+      
+    </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 export default {
     name: 'CheckOut',
-    computed: {
-        ...mapState(['checkout'])
+   
     }
-}
 </script>

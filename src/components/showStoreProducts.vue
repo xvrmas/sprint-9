@@ -51,6 +51,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 export default {
     name: 'showStoreProducts',
     data() {
@@ -71,6 +72,7 @@ export default {
     },
     computed: {
         ...mapGetters(['getPosts']),
+        ...mapState(['checkout'])
     },
     methods: {
         showProduct(itemPrice, itemText, itemAmount, itemId) {
@@ -81,10 +83,11 @@ export default {
                 id: itemId,
                 total: itemPrice,
             }
-            
+
             this.cart.push(cartProto)
-            let result = this.cart.filter(element => element.id == itemId)
-            if (result.length > 1) {
+            let result = this.cart.map(element => element.id)
+            let resultado = result.filter(item => item === itemId)
+            if (resultado.length > 1) {
                 this.found = true
             } else {
                 this.found = false
@@ -125,10 +128,12 @@ export default {
             let suma = this.cartFinal.map(element => element.total);
             this.resultat = suma.reduce((accu, item) => (accu + item), 0)
         },
-        deleteItem(item){
+        deleteItem(item) {
             let arr = this.cartFinal.indexOf(item)
             this.cartFinal.splice(arr, 1)
-            this.cart =[]
+            this.cart = []
+            this.cart= this.cartFinal
+            this.cart = [...this.cart]
             this.cartFinal = [...this.cartFinal];
 
         },
@@ -136,7 +141,8 @@ export default {
         mounted() {
             if (localStorage.cart) this.cart = localStorage.cart;
         },
-        showCheckOut(){
+        showCheckOut() {
+            this.$store.state.checkout.push(this.cartFinal)
             this.$router.push('CheckOut')
         }
 

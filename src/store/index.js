@@ -72,6 +72,9 @@ export default new Vuex.Store({
     getPosts(state) {
       return state.posts
     },
+    getCheckout(state){
+      return state.checkout
+    }
 
   },
   mutations: {
