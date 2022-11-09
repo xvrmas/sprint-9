@@ -34,15 +34,23 @@ const routes = [
   {
     path: '/storeView',
     name: 'storeView',
-    component: () => import('../views/storeView.vue')
+    component: () => import('../views/storeView.vue'),
+    meta: {
+      autenticacion: true
+    }
   },
   {
     path: '/CheckOut',
     name: 'CheckOut',
     component: () => import('../views/CheckOut.vue'),
-    meta: {
-      autenticacion: true
-    }
+   
+  },
+  {
+    path: '/farewellPage',
+    name: 'farewellPage',
+    component: () => import('../views/farewellPage.vue'),
+   
+
 
   }
 ]
@@ -59,9 +67,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const auth = getAuth();
   let usuario = auth.currentUser;
-  console.log(usuario)
   let autorizacion = to.matched.some(record => record.meta.autenticacion);
-  console.log(autorizacion)
   if (autorizacion && !usuario) {
     next('/LoginPage')
   } else if (!autorizacion && usuario) {
