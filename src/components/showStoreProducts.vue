@@ -12,14 +12,14 @@
                             <th><abbr title="Product"></abbr>Product</th>
                             <th><abbr title="Price"></abbr>Price</th>
                             <th><abbr title="Price"></abbr></th>
-                            <th><abbr title="Amount"></abbr>Amount</th>
+                            <th><abbr title="Amount"></abbr></th>
                             <th><abbr title="Price"></abbr></th>
                             <th><abbr title="total"></abbr>Total</th>
                             <th><abbr title="delete"></abbr>delete</th>
                         </tr>
                     </thead>
                     <tbody v-for="(item, i) in cartFinal" :key="i">
-                        <td class="is-italic">{{ item.product }}<strong></strong></td>
+                        <th class="is-italic">{{ item.product }}<strong></strong></th>
                         <td>{{ item.price }}$</td>
                         <button class="button is-success is-small mt-2" @click="resta(item)">-</button>
                         <td>{{ item.amount }}</td>

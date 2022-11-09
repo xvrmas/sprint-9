@@ -1,14 +1,10 @@
 <template>
     <div class="columns">
-        <div class="column">
-            <div class="caixa">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet nobis eaque quia iusto. Iure quam
-                    alias
-                    beatae sunt! Qui mollitia porro, ipsa laboriosam corporis incidunt labore aut velit a vel?</p>
-            </div>
+        <div class="column m-6">
+            <p class="is-size-4 has-text-centered"><strong>Thank you for your purchase</strong>, you will receive the items at your home shortly</p>
         </div>
         <div class="column">
-            <img src="@/assets/Nois-png.png" />
+            <img src="@/assets/Nois-png.png" width="300vh" height="auto" />
         </div>
     </div>
 </template>
@@ -18,8 +14,5 @@ export default {
 }
 </script>
 <style scoped>
-.caixa{
-    margin-top: 50vh;
-}
 
 </style>
