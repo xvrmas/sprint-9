@@ -11,24 +11,27 @@
                 </p>
                 <p>
                     <label for="name">Name:</label>
-                    <input class="input" id="name" v-model="name" type="text" name="name">
+                    <input class="input" id="name" v-model="name" type="text" name="name" placeholder="James Stewart">
                 </p>
                 <p>
                     <label for="name">Adress:</label>
-                    <input class="input" id="name" v-model="adress" type="text" name="name">
+                    <input class="input" id="name" v-model="adress" type="text" name="name"
+                        placeholder="Madison avenue 3">
                 </p>
                 <p>
                     <label for="email">Email:</label>
-                    <input class="input" id="email" v-model="email" type="email" name="email">
+                    <input class="input" id="email" v-model="email" type="email" name="email"
+                        placeholder="user@user.com">
                 </p>
                 <hr>
                 <p>
                     <label for="card">Card number:</label>
-                    <input class="input" id="card" v-model="card" type="number" name="card">
+                    <input class="input" id="card" v-model="card" type="number" name="card"
+                        placeholder="52100236674339006">
                 </p>
                 <p>
                     <label for="cvc">CVC:</label>
-                    <input class="input" id="CVC" v-model="cvc" type="number" name="cvc">
+                    <input class="input" id="CVC" v-model="cvc" type="number" name="cvc" placeholder="659">
                 </p>
             </form>
             <p>
@@ -90,7 +93,7 @@ export default {
             if (!this.card) {
                 this.errors.push('A card number is needed');
             }
-            if (this.card.length < 16 || this.card.length > 16  ) {
+            if (this.card.length < 16 || this.card.length > 16) {
                 this.errors.push('the card number must have 16 numbers');
             }
             if (this.cvc.length < 3 || this.cvc.length > 3) {
@@ -98,8 +101,11 @@ export default {
             } if (!this.cvc) {
                 this.errors.push('enter a cvv number');
             }
+            if (this.submitted = true && this.errors.length == 0) {
+                this.$router.push('farewellPage')
+            }
         }
-        
+
     }
 }
 </script>
