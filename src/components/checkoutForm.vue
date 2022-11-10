@@ -11,19 +11,28 @@
                 </p>
                 <p>
                     <label for="name">Name:</label>
-                    <input class="input" id="name" c v-model="name" type="text" name="name">
+                    <input class="input" id="name" v-model="name" type="text" name="name">
                 </p>
                 <p>
                     <label for="name">Adress:</label>
-                    <input class="input" id="name" required v-model="adress" type="text" name="name">
+                    <input class="input" id="name" v-model="adress" type="text" name="name">
                 </p>
                 <p>
                     <label for="email">Email:</label>
-                    <input class="input" id="email" required v-model="email" type="email" name="email">
+                    <input class="input" id="email" v-model="email" type="email" name="email">
+                </p>
+                <hr>
+                <p>
+                    <label for="card">Card number:</label>
+                    <input class="input" id="card" v-model="card" type="number" name="card">
+                </p>
+                <p>
+                    <label for="cvc">CVC:</label>
+                    <input class="input" id="CVC" v-model="cvc" type="number" name="cvc">
                 </p>
             </form>
             <p>
-                <input class="button" @click="checkForm" type="submit" value="Enviar">
+                <input class="button is-success m-6" @click="checkForm" type="submit" value="Submit">
             </p>
         </div>
         <div class="column "> </div>
@@ -37,36 +46,60 @@ export default {
     data() {
         return {
             errors: [],
-            name: null,
-            email: null,
-            adress:null,
+            name: '',
+            email: '',
+            adress: '',
+            card: 0,
+            cvc: 0,
+            expression: /\w+@\w+\.+[a-z]/,
+            onlyLetter: "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$",
             pasa: false
         }
     },
     methods: {
 
-        checkForm() {
-            if (this.name && this.email) {
-                this.pasa = true;
-                this.$router.push('farewellPage')
 
-            }
-
+        checkForm: function (e) {
+            this.submitted = true;
             this.errors = [];
 
             if (!this.name) {
                 this.errors.push('Name is required.');
+            }
+            if (this.name.match(this.onlyLetter) == null) {
+                this.errors.push('Name cannot be a number');
+            }
+            if (this.name.length < 3) {
+                this.errors.push('The name must have at least three letters');
+            }
 
-            }
-            if (!this.email) {
-                this.errors.push('An email address is required');
-            }
+
             if (!this.adress) {
                 this.errors.push('An address is required');
             }
 
+            if (this.adress.length < 3) {
+                this.errors.push('The address must have at least three letters');
+            }
+            if (!this.email) {
+                this.errors.push('An email address is required');
+            }
+            if (this.email.match(this.expression) == null) {
+                this.errors.push('The email must have the correct format "user@user.com"');
+            }
+            if (!this.card) {
+                this.errors.push('A card number is needed');
+            }
+            if (this.card.length < 16 || this.card.length > 16  ) {
+                this.errors.push('the card number must have 16 numbers');
+            }
+            if (this.cvc.length < 3 || this.cvc.length > 3) {
+                this.errors.push('The cvv must have 3 numbers');
+            } if (!this.cvc) {
+                this.errors.push('enter a cvv number');
+            }
         }
-
+        
     }
 }
 </script>

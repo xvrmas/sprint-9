@@ -20,22 +20,22 @@
                     </thead>
                     <tbody v-for="(item, i) in cartFinal" :key="i">
                         <th class="is-italic">{{ item.product }}<strong></strong></th>
-                        <td>{{ item.price }}$</td>
+                        <td>${{ item.price }}</td>
                         <button class="button is-success is-small mt-2" @click="resta(item)">-</button>
                         <td>{{ item.amount }}</td>
                         <button class="button is-success is-small mt-2" @click="suma(item)">+</button>
-                        <td>{{ item.total }}$</td>
+                        <td>${{ item.total }}</td>
                         <button class="button is-small is-danger mt-2" @click="deleteItem(item)">X</button>
 
                     </tbody>
                     <hr>
                 </table>
                 <div class="has-text-right m-6">
-                    <h1 class="is-size-6"><strong>Cost:</strong> {{ resultat }}$</h1>
+                    <h1 class="is-size-6"><strong>Cost:</strong>$ {{ resultat }}</h1>
 
-                    <h1 class="is-size-6 "><strong>Discount 15%:</strong> {{ discount }}$</h1>
+                    <h1 class="is-size-6 "><strong>Discount 15%:</strong> ${{ discount }}</h1>
 
-                    <h1 class="is-size-5"><strong>Total:</strong> {{ resultatDiscount }}$</h1>
+                    <h1 class="is-size-5"><strong>Total:</strong>$ {{ resultatDiscount }}</h1>
                     <hr>
                     <div>
                         <button class="button is-success mt-3" @click="showCheckOut()">Chekout</button>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="is-size-6"> <strong> {{ item.text }}</strong></p>
-                                <p class="is-size-6">Price:{{ item.price }} $</p>
+                                <p class="is-size-6">Price: ${{ item.price }} </p>
                                 <button class="button is-success"
                                     @click="showProduct(item.price, item.text, item.amount, item.id), mostrar()">Add</button>
                             </div>
@@ -158,7 +158,7 @@ export default {
         deleteItem(item) {
             let arr = this.cartFinal.indexOf(item)
             this.cartFinal.splice(arr, 1)
-            alert(`it will be removed ${item.product}, from cart`)
+            alert(` ${item.product} will be removed from cart`)
             this.cart = []
             this.cart = this.cartFinal
             this.cart = [...this.cart]
